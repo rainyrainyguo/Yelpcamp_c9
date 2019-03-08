@@ -14,12 +14,15 @@ var express    = require("express"),
 var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index");
+
  
 //mongoose.connect("mongodb+srv://rainy:rainy003232@cluster0-a27g2.mongodb.net/yelpcamp?retryWrites=true") //mongo lab version (internet)
 // mongoose.connect("mongodb://localhost:27017/yelp_camp",{useNewUrlParser:true});
 // mongoose.connect("mongodb://localhost:27017/yelp_camp"); 
-console.log(process.env.DATABASEURL);
-mongoose.connect(process.env.DATABASEURL);
+
+var url = "mongodb://localhost:27017/yelp_camp" || process.env.DATABASEURL;
+console.log(url);
+mongoose.connect(url);
 
 const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({extended: true}));
